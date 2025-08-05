@@ -1,14 +1,57 @@
 [
   {
+    "type": "builtin_body",
+    "named": true,
+    "fields": {
+      "chip_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "bus_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "chip_body",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "part",
+          "type": "builtin_body",
+          "named": true
+        },
+        {
+          "type": "clocked_body",
+          "named": true
+        },
+        {
+          "type": "parts_body",
           "named": true
         }
       ]
@@ -70,6 +113,21 @@
     }
   },
   {
+    "type": "clocked_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "connection",
     "named": true,
     "fields": {
@@ -104,6 +162,10 @@
         "required": true,
         "types": [
           {
+            "type": "bus_identifier",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -119,6 +181,10 @@
         "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "bus_identifier",
+            "named": true
+          },
           {
             "type": "identifier",
             "named": true
@@ -154,9 +220,23 @@
     }
   },
   {
+    "type": "parts_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "part",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -194,7 +274,15 @@
     "named": false
   },
   {
+    "type": "BUILTIN",
+    "named": false
+  },
+  {
     "type": "CHIP",
+    "named": false
+  },
+  {
+    "type": "CLOCKED",
     "named": false
   },
   {
@@ -210,12 +298,23 @@
     "named": false
   },
   {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
     "type": "comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "number",
     "named": true
   },
   {

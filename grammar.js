@@ -36,20 +36,45 @@ module.exports = grammar({
 
         in_section: $ => seq(
             'IN',
-            commaSep1(field('input_pin_name', $.identifier)),
+            commaSep1(field('input_pin_name', choice($.identifier, $.bus_identifier))),
             ';'
         ),
 
         out_section: $ => seq(
             'OUT',
-            commaSep1(field('output_pin_name', $.identifier)),
+            commaSep1(field('output_pin_name', choice($.identifier, $.bus_identifier))),
             ';'
         ),
 
-        chip_body: $ => seq(
+        bus_identifier: $ => seq(
+            $.identifier,
+            '[',
+            $.number,
+            ']'
+        ),
+        
+        chip_body: $ => repeat1(choice(
+            $.builtin_body,
+            $.clocked_body,
+            $.parts_body
+        )),
+
+        builtin_body: $ => seq(
+            'BUILTIN',
+            field('chip_name', $.identifier),
+            ';'
+        ),
+
+        clocked_body: $ => seq(
+            'CLOCKED',
+            commaSep1($.identifier),
+            ';'
+        ),
+
+        parts_body: $ => seq(
             'PARTS',
             ':',
-            repeat($.part),
+            repeat($.part)
         ),
 
         part: $ => seq(
