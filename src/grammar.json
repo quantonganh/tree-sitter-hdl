@@ -391,8 +391,17 @@
           "type": "FIELD",
           "name": "chip_pin",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "bus_identifier"
+              }
+            ]
           }
         }
       ]

@@ -136,6 +136,10 @@
         "required": true,
         "types": [
           {
+            "type": "bus_identifier",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }

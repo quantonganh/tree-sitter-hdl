@@ -88,7 +88,7 @@ module.exports = grammar({
         connection: $ => seq(
             field('part_pin', $.identifier),
             '=',
-            field('chip_pin', $.identifier)
+            field('chip_pin', choice($.identifier, $.bus_identifier))
         ),
 
         identifier_list: $ => seq(
